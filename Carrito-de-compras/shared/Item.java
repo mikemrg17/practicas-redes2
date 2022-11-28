@@ -1,8 +1,8 @@
 import java.io.Serializable;
-import java.util.HashSet;
 
 public class Item implements Serializable {
     //Atributos serializables : distintas imágenes del producto, descripción,  colores  disponibles,  tamaño,  precio,  tiempo  de  entrega,  etc.
+    private String name = null;
     private String description = null;
     private String[] colors;
     private int stock = 0;
@@ -16,7 +16,8 @@ public class Item implements Serializable {
 
     }
 
-    public Item(String description, String[] colors, int stock, String imagePath, String size, float price, int shippingTime){
+    public Item(String name, String description, String[] colors, int stock, String imagePath, String size, float price, int shippingTime){
+        this.name = name;
         this.description = description;
         this.colors = colors;
         this.stock = stock;
@@ -25,4 +26,6 @@ public class Item implements Serializable {
         this.price = price;
         this.shippingTime = shippingTime;
     }
+
+
 }

@@ -1,6 +1,5 @@
 import java.net.ServerSocket;
 import java.net.Socket;
-import shared.Catalog;
 
 public class Server {
 
