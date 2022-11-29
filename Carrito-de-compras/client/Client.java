@@ -7,7 +7,7 @@ import java.net.Socket;
 
 public class Client {
 
-    private static final String serverIP = "192.168.100.98";
+    private static final String serverIP = "127.0.0.1";
     private static final int serverPort = 3014;
     static BufferedReader bufferedReader = new BufferedReader( new InputStreamReader( System.in ) );
 
@@ -27,11 +27,12 @@ public class Client {
             Socket socket = new Socket(serverIP, serverPort);
             
             ObjectOperator objectOperator = new ObjectOperator();
+
             Catalog catalog = ( Catalog ) objectOperator.readObject(socket.getInputStream());
 
             Client.receiveCatalogImagesFromServer(socket);
 
-            Cart cart = new Cart();
+            /*Cart cart = new Cart();
 
             while(option != 7){
                 clearScreen();
@@ -102,11 +103,13 @@ public class Client {
                     
                     default: break;
                 }
-            }
+            }*/
 
             objectOperator.writeObject(catalog, socket.getOutputStream());
-            socket.close();
-            if(option == 7) break;
+            if(option == 7){
+                socket.close();
+                break;
+            }
         }
         bufferedReader.close();
 
@@ -144,11 +147,9 @@ public class Client {
       
                 }
 
-                //dataOutputStream.close();
+                dataOutputStream.close();
       
             }
-
-            //dataInputStream.close();
 
         } catch (Exception e) {
             e.printStackTrace();

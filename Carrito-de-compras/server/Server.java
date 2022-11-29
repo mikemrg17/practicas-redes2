@@ -17,12 +17,12 @@ public class Server {
             System.out.println("Servidor iniciado, en espera de conexiones en el puerto " + port);
 
             for(;;){
-                Catalog catalog = Server.getCatalagFromFile();
-
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("Conexión establecida desde " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
+                
                 ObjectOperator objectOperator = new ObjectOperator();
-
+                
+                Catalog catalog = Server.getCatalagFromFile();
                 objectOperator.writeObject(catalog, clientSocket.getOutputStream());
 
                 
@@ -86,7 +86,7 @@ public class Server {
             dataOutputStream.writeInt( imagePaths.length );
             dataOutputStream.flush();
 
-            DataInputStream dataInputStream;
+            DataInputStream dataInputStream = null;
 
             for(int i = 0; i < imagePaths.length; i++){
 
@@ -117,10 +117,9 @@ public class Server {
                     sent += bytesRead;
                 }
 
-                dataInputStream.close();
-
             }
 
+            dataInputStream.close();
             dataOutputStream.close();
 
         } catch (Exception e) {
