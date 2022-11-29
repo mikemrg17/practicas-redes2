@@ -1,7 +1,10 @@
 import java.io.Serializable;
+import java.util.HashSet;
 
 public class Item implements Serializable {
     //Atributos serializables : distintas imágenes del producto, descripción,  colores  disponibles,  tamaño,  precio,  tiempo  de  entrega,  etc.
+    public static HashSet<Item> items = new HashSet<Item>();
+    private int id = 0;
     private String name = null;
     private String description = null;
     private String[] colors;
@@ -11,7 +14,8 @@ public class Item implements Serializable {
     private float price = 0.0f;
     private int shippingTime = 0;
 
-    public Item(String name, String description, String[] colors, int stock, String imagePath, String size, float price, int shippingTime){
+    public Item(int id, String name, String description, String[] colors, int stock, String imagePath, String size, float price, int shippingTime){
+        this.id = items.size();
         this.name = name;
         this.description = description;
         this.colors = colors;
@@ -20,8 +24,16 @@ public class Item implements Serializable {
         this.size = size;
         this.price = price;
         this.shippingTime = shippingTime;
+        items.add(this);
     }
 
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return this.name;
@@ -87,5 +99,15 @@ public class Item implements Serializable {
         this.shippingTime = shippingTime;
     }
 
+    public void printItem() {
+        System.out.println("Id: " + this.id);
+        System.out.println("\tProducto: " + this.name);
+        System.out.println("\tDescripción: " + this.description);
+        System.out.println("\tDisponibles: " + this.stock);
+        System.out.println("\tTamaño: " + this.size);
+        System.out.println("\tPrecio: " + this.price);
+        System.out.println("\tLlega en: " + this.shippingTime + " días");
+        System.out.println("\n");
+    }
 
 }

@@ -42,5 +42,14 @@ public class Catalog implements Serializable {
 
         return paths;
     }
+
+    public void printCatalog(){
+        Iterator<Item> iterator = this.catalog.iterator();
+
+        while( iterator.hasNext() ) {
+            Item item = ( Item ) iterator.next();
+            item.printItem();
+        }
+    }
         
 }

@@ -14,15 +14,15 @@ public class Server {
         try{
 
             ServerSocket serverSocket = new ServerSocket(port);
-            System.out.println("Servidor iniciado, en espera de conexiones");
+            System.out.println("Servidor iniciado, en espera de conexiones en el puerto " + port);
 
             for(;;){
+                Catalog catalog = Server.getCatalagFromFile();
 
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("Conexión establecida desde " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
                 ObjectOperator objectOperator = new ObjectOperator();
 
-                Catalog catalog = Server.getCatalagFromFile();
                 objectOperator.writeObject(catalog, clientSocket.getOutputStream());
 
                 
@@ -31,7 +31,6 @@ public class Server {
 
                 catalog = (Catalog) objectOperator.readObject( clientSocket.getInputStream() );
                 Server.saveCatalogToFile(catalog);
-
             }
 
         }catch(Exception e){
@@ -121,6 +120,8 @@ public class Server {
                 dataInputStream.close();
 
             }
+
+            dataOutputStream.close();
 
         } catch (Exception e) {
             e.printStackTrace();
