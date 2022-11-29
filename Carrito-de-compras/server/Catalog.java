@@ -1,5 +1,3 @@
-package shared;
-
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
