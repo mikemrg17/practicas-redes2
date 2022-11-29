@@ -6,6 +6,7 @@ public class Catalog implements Serializable {
     private ArrayList<Item> catalog = new ArrayList<Item>();    
     
     public Catalog() {
+        clearCatalog();
     }
 
     public void clearCatalog(){
@@ -41,6 +42,15 @@ public class Catalog implements Serializable {
         }
 
         return paths;
+    }
+
+    public void printCatalog() {
+        Iterator<Item> iterator = this.catalog.iterator();
+
+        while( iterator.hasNext() ) {
+            Item item = ( Item ) iterator.next();
+            item.printItem();
+        }
     }
         
 }
