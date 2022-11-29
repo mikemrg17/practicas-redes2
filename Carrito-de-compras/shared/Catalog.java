@@ -1,10 +1,5 @@
-package shared;
-
 import java.util.ArrayList;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.util.Iterator;
 import java.io.Serializable;
 
 public class Catalog implements Serializable {
@@ -13,28 +8,39 @@ public class Catalog implements Serializable {
     public Catalog() {
     }
 
-    public void fillCatalog() {
-        catalog.add( new Item( "Sudadera", "Sudadera de algodon lavable", new String[] {"Rojo", "Negro", "Azul"}, 15, "sudadera.jpg", "M", 450f, 15 ) );
-        catalog.add( new Item( "Camisa", "Camisa de lino lavable", new String[] {"Rojo", "Negro", "Azul"}, 15, "sudadera.jpg", "M", 450f, 15 ) );
-        catalog.add( new Item( "Pantalon", "Pnatalon chinoe", new String[] {"Rojo", "Negro", "Azul"}, 15, "sudadera.jpg", "M", 450f, 15 ) );
-    }
-
     public void clearCatalog(){
         this.catalog.clear();
     }
 
     public ArrayList<Item> getCatalog(){
         return this.catalog;
-    } 
-
-    public void saveCatalog() throws FileNotFoundException, IOException {
-
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream( new FileOutputStream( "./recibido/db.obj" ) );
-        objectOutputStream.writeObject(this);
-        objectOutputStream.flush();
-        objectOutputStream.close();
-
     }
 
+    public void setCatalog(ArrayList<Item> catalog){
+        this.catalog = catalog;
+    }
+
+    public void addItem( Item item ) {
+        this.catalog.add(item);
+    }
+
+    public String[] getItemsImagePaths() {
+
+        String paths[] = new String[ this.catalog.size() ]; 
+
+        Iterator<Item> iterator = this.catalog.iterator();
+        
+        Item item = null;
+        int i = 0;
+
+        while( iterator.hasNext() ) {
+
+            item = ( Item ) iterator.next();
+            paths[i] = item.getImagePath();
+            i++;
+        }
+
+        return paths;
+    }
         
 }
