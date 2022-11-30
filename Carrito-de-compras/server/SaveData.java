@@ -7,9 +7,9 @@ public class SaveData {
 
     Catalog catalog = new Catalog();
 
-    catalog.addItem( new Item( "Sudadera", "Sudadera de algodon lavable", new String[] {"Rojo", "Negro", "Azul"}, 15, "sudadera.jpeg", "M", 450f, 15 ) );
-    catalog.addItem( new Item( "Camisa", "Camisa de lino lavable", new String[] {"Rojo", "Negro", "Azul"}, 15, "camisa.jpeg", "M", 200f, 4 ) );
-    catalog.addItem( new Item( "Pantalon", "Pantalon chino", new String[] {"Rojo", "Negro", "Azul"}, 15, "pantalon.jpg", "M", 930f, 31 ) );
+    catalog.addItem( new Item(0, "Sudadera", "Sudadera de algodon lavable", new String[] {"Rojo", "Negro", "Azul"}, 15, "sudadera.jpeg", "M", 450f, 15 ) );
+    catalog.addItem( new Item(1, "Camisa", "Camisa de lino lavable", new String[] {"Rojo", "Negro", "Azul"}, 15, "camisa.jpeg", "M", 200f, 4 ) );
+    catalog.addItem( new Item(2, "Pantalon", "Pantalon chino", new String[] {"Rojo", "Negro", "Azul"}, 15, "pantalon.jpg", "M", 930f, 31 ) );
 
     try {
       
